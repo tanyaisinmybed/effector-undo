@@ -11,6 +11,10 @@
     "history",
     "undo"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanyaisinmybed/effector-undo.git"
+  },
   "author": "tanyaisinmybed",
   "license": "ISC"
 }
