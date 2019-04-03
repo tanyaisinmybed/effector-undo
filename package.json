@@ -1,0 +1,16 @@
+{
+  "name": "@tanyaisinmybed/effector-undo",
+  "version": "1.0.0-alpha.0",
+  "description": "simple undo/redo functionality for effector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "effector",
+    "history",
+    "undo"
+  ],
+  "author": "tanyaisinmybed",
+  "license": "ISC"
+}
