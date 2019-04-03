@@ -10,3 +10,5 @@ export const {undo, redo} = createHistory({
     events: [inc, dec]
 })(counter);
 ```
+
+[codesandbox](https://codesandbox.io/s/x7q86y58oq)
