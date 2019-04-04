@@ -16,5 +16,8 @@
     "url": "https://github.com/tanyaisinmybed/effector-undo.git"
   },
   "author": "tanyaisinmybed",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "effector": "^0.18.4"
+  }
 }
