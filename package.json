@@ -1,6 +1,6 @@
 {
   "name": "@tanyaisinmybed/effector-undo",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "simple undo/redo functionality for effector",
   "main": "index.js",
   "scripts": {
