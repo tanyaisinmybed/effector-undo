@@ -8,7 +8,6 @@ import { createHistory } from "@tanyaisinmybed/effector-undo";
 export const { undo, redo, clear } = createHistory(counter, {
   limit: 10,
   events: [inc, dec],
-  ignoreInitialState: false,
   filter: (lastState, state) => state - lastState > 3,
   debug: true
 });

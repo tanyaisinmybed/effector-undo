@@ -2,7 +2,6 @@ import {createStore, createApi} from "effector";
 
 export function createHistory(store, {
     limit = 10,
-    ignoreInitialState,
     events,
     filter,
     debug
@@ -10,7 +9,7 @@ export function createHistory(store, {
     const initialState = store.getState();
 
     const history = createStore({
-        states: ignoreInitialState ? [] : [initialState],
+        states: [initialState],
         head: 0
     });
 
@@ -54,12 +53,12 @@ export function createHistory(store, {
 
     if (process.env.NODE_ENV === "development" && debug) {
         history.watch(state => {
-            console.group("effector-undo");
+            console.group("effector-undo: ", store.shortName);
             console.log("History: ", state.states);
             console.log("Head: ", state.head);
             console.groupEnd();
         })
     }
 
-    return {undo, redo, clear};
+    return {undo, redo, clear, history};
 }
