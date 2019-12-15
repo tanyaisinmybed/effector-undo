@@ -2,10 +2,20 @@
   "name": "@tanyaisinmybed/effector-undo",
   "version": "1.0.0-alpha.2",
   "description": "simple undo/redo functionality for effector",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:es": "tsc --project ./tsconfig.json --rootDir src --outDir es",
+    "build:cjs": "tsc --project ./tsconfig.json --rootDir src --outDir dist --module CommonJS --declaration false",
+    "build": "npm run build:es && npm run build:cjs",
+    "prepublishOnly": "npm ci && npm run build"
   },
+  "files": [
+    "es",
+    "dist"
+  ],
   "keywords": [
     "effector",
     "history",
@@ -18,6 +28,7 @@
   "author": "tanyaisinmybed",
   "license": "ISC",
   "devDependencies": {
-    "effector": "^0.18.4"
+    "effector": "^20.8.1",
+    "typescript": "^3.7.3"
   }
 }
