@@ -1,11 +1,14 @@
 # effector-undo
+
 Simple undo/redo functionality for effector
 
 Example
+
 ```javascript
 import { createHistory } from "@tanyaisinmybed/effector-undo";
 
-export const { undo, redo, clear } = createHistory(counter, {
+export const { undo, redo, clear } = createHistory({
+  store: counter,
   limit: 10,
   events: [inc, dec],
   filter: (lastState, state) => state - lastState > 3,
