@@ -7,8 +7,8 @@
   "typings": "es/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:es": "tsc --project ./tsconfig.json --rootDir src --outDir es",
-    "build:cjs": "tsc --project ./tsconfig.json --rootDir src --outDir dist --module CommonJS --declaration false",
+    "build:es": "tsc --project ./tsconfig.json --rootDir src --outDir ./es",
+    "build:cjs": "tsc --project ./tsconfig.json --rootDir src --outDir ./dist --module CommonJS --declaration false",
     "build": "npm run build:es && npm run build:cjs",
     "prepublishOnly": "npm ci && npm run build"
   },

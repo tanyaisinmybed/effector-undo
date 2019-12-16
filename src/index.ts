@@ -9,22 +9,20 @@ import {
   Event
 } from "effector";
 
-export type Filter<State> = (state: State, prevState: State) => boolean
+export type Filter<State> = (state: State, prevState: State) => boolean;
 
 export interface HistoryOptions<State = any> {
   store: Store<State>;
   events: Event<any>[];
   limit?: number;
   filter?: Filter<State>;
-  debug?: boolean;
 }
 
 export function createHistory<State>({
   store,
   events,
   limit = 10,
-  filter = defaultFilter,
-  debug
+  filter = defaultFilter
 }: HistoryOptions<State>) {
   const initialState = store.getState();
   const name = store.shortName;
@@ -35,13 +33,18 @@ export function createHistory<State>({
   const redo = createEvent(name + "-history-redo");
 
   const history = createStore({
-    states: [store.getState()],
+    states: [initialState],
     head: 0
   })
-    .on(push, ({ states, head }, state) => ({
-      states: [state].concat(states.slice(head)).slice(0, limit),
-      head: 0
-    }))
+    .on(push, ({ states, head }, state) => {
+      const current = states.slice(head);
+      const merged = [state].concat(current);
+      const limited = merged.slice(0, limit);
+      return {
+        states: limited,
+        head: 0
+      };
+    })
     .on(undo, ({ states, head }) => ({
       states,
       head: Math.min(head + 1, states.length - 1)
@@ -71,15 +74,6 @@ export function createHistory<State>({
     from: current,
     to: store
   });
-
-  if (debug) {
-    history.watch(state => {
-      console.group("effector-undo: ", name);
-      console.log("History: ", state.states);
-      console.log("Head: ", state.head);
-      console.groupEnd();
-    });
-  }
 
   return { undo, redo, clear, history };
 }
