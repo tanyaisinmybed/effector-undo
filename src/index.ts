@@ -53,7 +53,10 @@ export function createHistory<State>({
       states,
       head: Math.max(head - 1, 0)
     }))
-    .reset(clear);
+    .on(clear, ({ states, head }) => ({
+      states: [states[head]],
+      head: 0
+    }));
 
   const current = history.map(({ states, head }) => states[head]);
 
